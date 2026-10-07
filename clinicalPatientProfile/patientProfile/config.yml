@@ -5,13 +5,20 @@ default:
   data_source: "mock"
 
 dev:
+# 
+ 
+  database: "dev_db"
 
-  data_source: "mock"
+  log_level: "DEBUG"
 
 qa:
 
-  data_source: "qa_database"
+  database: "qa_db"
+
+  log_level: "INFO"
 
 prod:
 
-  data_source: "production_database"
+  database: "prod_db"
+
+  log_level: "WARN"
