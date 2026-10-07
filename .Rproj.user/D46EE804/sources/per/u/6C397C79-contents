@@ -1,0 +1,6 @@
+install.packages("golem")
+library(golem)
+
+create_golem(
+  path = "clinicalPatientProfile"
+)

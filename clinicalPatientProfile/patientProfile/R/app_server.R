@@ -6,44 +6,45 @@
 #' @noRd
 app_server <- function(input, output, session) {
   
-  patients <- get_patient_data()
-  
-  vitals <- get_vitals_data()
-  
-  ae <- get_ae_data()
-  
-  
-  selected_patient <- reactive({
+  patients <- data.frame(
     
-    req(input$patient)
+    USUBJID = c(
+      "SUBJ001",
+      "SUBJ002",
+      "SUBJ003"
+    ),
     
-    input$patient
+    AGE = c(
+      45,
+      52,
+      61
+    ),
     
-  })
+    SEX = c(
+      "M",
+      "F",
+      "M"
+    ),
+    
+    TREATMENT = c(
+      "Drug A",
+      "Drug B",
+      "Drug A"
+    ),
+    
+    STATUS = c(
+      "Active",
+      "Active",
+      "Completed"
+    )
+    
+  )
   
   
   patient_data <- reactive({
     
     patients[
-      patients$USUBJID == selected_patient(),
-    ]
-    
-  })
-  
-  
-  vitals_data <- reactive({
-    
-    vitals[
-      vitals$USUBJID == selected_patient(),
-    ]
-    
-  })
-  
-  
-  ae_data <- reactive({
-    
-    ae[
-      ae$USUBJID == selected_patient(),
+      patients$USUBJID == input$patient,
     ]
     
   })
@@ -52,18 +53,6 @@ app_server <- function(input, output, session) {
   mod_demographics_server(
     "demographics",
     patient_data
-  )
-  
-  
-  mod_vitals_server(
-    "vitals",
-    vitals_data
-  )
-  
-  
-  mod_ae_server(
-    "ae",
-    ae_data
   )
   
 }
