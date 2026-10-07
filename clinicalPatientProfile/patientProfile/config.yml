@@ -1,0 +1,17 @@
+default:
+
+  app_name: "Clinical Patient Viewer"
+
+  data_source: "mock"
+
+dev:
+
+  data_source: "mock"
+
+qa:
+
+  data_source: "qa_database"
+
+prod:
+
+  data_source: "production_database"
